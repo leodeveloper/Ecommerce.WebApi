@@ -1,6 +1,8 @@
 ﻿
 using Ecommerce.Model.Dto;
 using Ecommerce.Model.EntityFrameWork;
+using Ecommerce.Model.GenericRepository.Implementation;
+using Ecommerce.Model.GenericRepository.Repository;
 using Ecommerce.Service.Interface;
 using Ecommerce.Service.Service;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +39,8 @@ namespace Ecommerce.WebApi
             services.AddDbContext<EnityFramWorkDbContext>(opt => opt.UseInMemoryDatabase("TestDb"));
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IRepository, EntityFrameworkRepository>();
+            services.AddScoped<IRepositoryReadOnly, EntityFrameworkRepositoryReadOnly>();
             services.AddMvc();
         }
 

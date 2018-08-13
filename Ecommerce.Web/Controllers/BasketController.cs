@@ -27,7 +27,7 @@ namespace Ecommerce.Web.Controllers
         [HttpPost]
         public IActionResult AddItemIntoBasket(AddBasketItemViewModel model)
         {
-            BasketItemViewModel basketViewModel = _iBasketRepository.AddItemintoBasket(model.Id, model.Quantity);
+            BasketItemViewModel basketViewModel = _iBasketRepository.AddItemintoBasket(model.Id, model.Quantity, model.UserId);
             return RedirectToAction("Index");
         }
 

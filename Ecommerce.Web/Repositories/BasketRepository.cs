@@ -54,11 +54,12 @@ namespace Ecommerce.Web.Repositories
         /// <param name="productId"></param>
         /// <param name="quantity"></param>
         /// <returns></returns>
-        public BasketItemViewModel AddItemintoBasket(int productId, int quantity)
+        public BasketItemViewModel AddItemintoBasket(int productId, int quantity, int userId)
         {
             BasketItem basketItem = new BasketItem();
             basketItem.ProductId = productId;
             basketItem.Quantity = quantity;
+            basketItem.UserId = userId;
             string jsonsContent = JsonConvert.SerializeObject(basketItem);
             string apiResponse = _iPostRequestManager.SendRequest(_iGetApiUrls.PostBasketItem, jsonsContent, "", "", false, HttpRequestContentType.ApplicationJson.GetDescription(), null);
             if (apiResponse == null)

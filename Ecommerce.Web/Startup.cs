@@ -48,7 +48,8 @@ namespace Ecommerce.Web
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<IDeleteRequestManager, DeleteRequestManager>();
-            
+           
+
             services.AddScoped<IGetApiUrls, GetApiUrls>();
             services.AddMvc();
             // Add functionality to inject IOptions<T>

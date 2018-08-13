@@ -45,6 +45,7 @@
                                 {
                                     @Html.HiddenFor(m => m.Id)
                                     @Html.DropDownList("Quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                                    @Html.Hidden("UserId", 1)
                                     <input type="submit" class="btn-primary" value="Add Basket" />
                                 }
                             </div>

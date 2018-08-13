@@ -6,15 +6,15 @@ using System.Text;
 
 namespace Ecommerce.Model.EntityFrameWork
 {
-    public class EnityFramWorkDbContext : DbContext
+    public partial class EnityFramWorkDbContext : DbContext
     {
         public EnityFramWorkDbContext(DbContextOptions<EnityFramWorkDbContext> options)
            : base(options)
         {
         }
 
-        public DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
 
-        public DbSet<BasketItem> BasketItems { get; set; }
+        public virtual DbSet<BasketItem> BasketItems { get; set; }
     }
 }
