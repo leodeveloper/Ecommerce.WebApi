@@ -41,7 +41,7 @@
             }
         </tbody>
     </table>
-    @Html.ActionLink("Remove All Item from basket", "DeleteAllBasketItems", "Basket", null, htmlAttributes: null)
+    @Html.ActionLink("Remove All Item from basket", "DeleteAllBasketItems", "Basket", routeValues: new { userId = 1 }, htmlAttributes: null)
 }
 else
 {
