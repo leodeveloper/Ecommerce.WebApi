@@ -1,0 +1,73 @@
+@model Ecommerce.Web.Model.ProductViewModel
+
+@{
+    ViewData["Title"] = "Product Detail";
+}
+
+<h2>Product Detail</h2>
+@if (Model != null)
+{
+
+    <table with="65%">
+        <tr>
+            <td>
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Price)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Desciption)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Desciption)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Photo)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Photo)
+                        </dd>
+                        <dt></dt>
+                        <dd>
+                            <div>
+                                @using (Html.BeginForm("AddItemIntoBasket", "Basket", FormMethod.Post))
+                                {
+                                    @Html.HiddenFor(m => m.Id)
+                                    @Html.DropDownList("Quantity", Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                                    <input type="submit" class="btn-primary" value="Add Basket" />
+                                }
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+
+
+
+}
+else
+{
+    <div>
+        No product found
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

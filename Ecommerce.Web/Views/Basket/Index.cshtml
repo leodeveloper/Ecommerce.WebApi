@@ -1,0 +1,53 @@
+@model IEnumerable<Ecommerce.Web.Model.BasketItemViewModel>
+
+@{
+    ViewData["Title"] = "Basket";
+}
+
+<h2>Basket</h2>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>   
+                <td>@Html.DisplayFor(modelItem => item.Product.Price)</td>
+                <td>
+                    @Html.DropDownListFor(modelItem => item.Quantity, Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }))
+                    @Html.ActionLink("Update Quantity", "ChangeQuantity", "Basket", routeValues: new { basketItemId = item.Id, quantity = item.Quantity }, htmlAttributes: null)
+                </td>                
+                <td>
+                    @Html.ActionLink("Remove from basket", "DeleteItemFromBasket", "Basket", routeValues: new { basketItemId = item.Id }, htmlAttributes: null)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Remove All Item from basket", "DeleteAllBasketItems", "Basket", null, htmlAttributes: null)
+}
+else
+{
+    <div>Your basket is empty</div>
+
+}
+<br />
+<a href="../Product/Index">Back to Products</a>
+
