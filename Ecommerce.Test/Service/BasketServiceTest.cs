@@ -47,21 +47,20 @@ namespace Ecommerce.Test.Service
         public async Task AddItemIntoBasket_ReturnsBasketItem()
         {
             // Arrange     
-            _iRepositoryMock.Setup(m => m.GetAsync<BasketItem>(b => b.UserId == 1, null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock));
+            _iRepositoryMock.Setup(m => m.GetAsync<BasketItem>(It.IsAny<Expression<Func<BasketItem, bool>>>(), null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock));
 
             // Act
             var result = await _iBasketService.AddItemintoBasketAsync(basketItemDbSetMock);
 
             // Assert
             Assert.NotNull(result);
-            //Assert.Equal(6, result.Id);
+            Assert.Equal(6, result.Id);
         }
 
         [Fact]
         public async Task ClearAllBasketItem()
         {
             // Arrange   
-           // _iRepositoryMock.Setup(m => m.GetAllAsync<BasketItem>(null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock));
             _iRepositoryMock.Setup(m => m.GetAsync<BasketItem>(b => b.UserId == 1, null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock.Where(b=>b.UserId==1)));
 
             // Act
@@ -76,7 +75,6 @@ namespace Ecommerce.Test.Service
         public async Task DeleteBasketItem_ById()
         {
             // Arrange   
-            _iRepositoryMock.Setup(m => m.GetAllAsync<BasketItem>(null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock));
             _iRepositoryMock.Setup(m => m.GetByIdAsync<BasketItem>(1)).Returns(Task.FromResult(basketItemDbSetMock));
 
             // Act
@@ -84,14 +82,15 @@ namespace Ecommerce.Test.Service
 
             // Assert
             Assert.NotNull(result);
-
+            Assert.Equal(0, result.Count);
         }      
 
         [Fact]
         public async Task Change_Basket_Item_Quanity()
         {
             // Arrange   
-            _iRepositoryMock.Setup(m => m.GetAllAsync<BasketItem>(null, null, null, null)).Returns(Task.FromResult(basketItemsDbSetMock));
+            _iRepositoryMock.Setup(m => m.GetAsync<BasketItem>(It.IsAny<Expression<Func<BasketItem, bool>>>(), null, null, null, null))
+                .Returns(Task.FromResult(basketItemsDbSetMock));
             _iRepositoryMock.Setup(m => m.GetByIdAsync<BasketItem>(1)).Returns(Task.FromResult(basketItemDbSetMock));
 
             // Act

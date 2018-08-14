@@ -7,6 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -47,18 +48,14 @@ namespace Ecommerce.Test.Service
         public async Task Get_Product_ReturnsProduct()
         {
             // Arrange 
-            _iRepositoryMock.Setup(m => m.GetAllAsync<Product>(null, null, null, null))
-              .Returns(Task.FromResult(_productsDbSetMock));
-            //_iRepositoryMock.Setup(m => m.GetOneAsync<Product>(p => p.Id == 1,null))
-            //    .Returns(Task.FromResult(_productDbSetMock));
-
+            _iRepositoryMock.Setup(moq => moq.GetOneAsync(It.IsAny<Expression<Func<Product, bool>>>(),null)).Returns(Task.FromResult(_productDbSetMock));
+            
             // Act
             var result = await _iProductService.GetProductAsync(1);
 
             // Assert
-           // Assert.NotNull(result);
-            //  Assert.Equal(5, result.Count);
-
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Id);
         }
     }
 }
