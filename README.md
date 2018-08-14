@@ -60,7 +60,7 @@ curl -i -H "Content-Type: application/json" http://localhost:61492/api/Product/P
 
 curl -i -H "Content-Type: application/json" http://localhost:61492/api/Product
 
-curl -i -H "Content-Type: application/json" http://localhost:61492/api/Shoppingcart/GetBasketItems
+curl -i -H "Content-Type: application/json" http://localhost:61492/api/Shoppingcart/GetBasketItems/1
 
 curl -i -H "Content-Type: application/json" -X POST -d "{'ProductId':1,'Product':null,'Quantity':4} " http://localhost:61492/Api/ShoppingCart/
 
