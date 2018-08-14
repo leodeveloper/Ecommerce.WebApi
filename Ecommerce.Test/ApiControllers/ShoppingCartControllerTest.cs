@@ -27,10 +27,10 @@ namespace Ecommerce.Test.ApiControllers
         {
             // Arrange     
             var basketItemDbSetMock = Builder<BasketItem>.CreateListOfSize(5).Build();
-            _iBasketServiceMock.Setup(m => m.GetBasketItemsAsync()).Returns(Task.FromResult(basketItemDbSetMock));
+            _iBasketServiceMock.Setup(m => m.GetBasketItemsAsync(1)).Returns(Task.FromResult(basketItemDbSetMock));
 
             // Act
-            var result = await _shoppingCartController.GetBasketItems();
+            var result = await _shoppingCartController.GetBasketItems(1);
 
             // Assert
             Assert.NotNull(result);

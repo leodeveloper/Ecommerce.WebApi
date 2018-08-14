@@ -22,10 +22,10 @@ namespace Ecommerce.WebApi.Controllers
         }
 
         // GET: api/ShoppingCart/GetBasketItems
-        [HttpGet("GetBasketItems")]
-        public async Task<IActionResult> GetBasketItems()
+        [HttpGet("GetBasketItems/{userId}")]
+        public async Task<IActionResult> GetBasketItems(int userId)
         {
-            IList<BasketItem> basketItems = await _iBasketService.GetBasketItemsAsync();           
+            IList<BasketItem> basketItems = await _iBasketService.GetBasketItemsAsync(userId);           
             return Ok(basketItems);           
         }
 

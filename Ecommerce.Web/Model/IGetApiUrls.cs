@@ -2,8 +2,8 @@
 {
     public interface IGetApiUrls
     {
-       
-        string GetBasketItem { get; }
+
+        string GetBasketItem(int userId);
         string PostBasketItem { get; }
         string ProductsApiUrl { get; }
 

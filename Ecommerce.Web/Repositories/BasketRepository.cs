@@ -39,9 +39,9 @@ namespace Ecommerce.Web.Repositories
         /// Get All basket item
         /// </summary>
         /// <returns></returns>
-        public IList<BasketItemViewModel> GetBasketItem()
+        public IList<BasketItemViewModel> GetBasketItem(int userId)
         {
-            string apiResponse = _iGetRequestManager.SendRequest(_iGetApiUrls.GetBasketItem, "", "", false, HttpRequestContentType.ApplicationJson.GetDescription(), null);
+            string apiResponse = _iGetRequestManager.SendRequest(_iGetApiUrls.GetBasketItem(userId), "", "", false, HttpRequestContentType.ApplicationJson.GetDescription(), null);
             if (apiResponse == null)
                 return null;
 

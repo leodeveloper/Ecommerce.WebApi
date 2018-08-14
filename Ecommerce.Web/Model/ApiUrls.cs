@@ -31,7 +31,7 @@ namespace Ecommerce.Web.Model
 
         public string GetProductByIdApiUrl(int productId) => _apiUrls.Value.BaseUrl + _apiUrls.Value.GetProductbyId + productId;
 
-        public string GetBasketItem => _apiUrls.Value.BaseUrl + _apiUrls.Value.GetBasketItem;
+        public string GetBasketItem(int userId) => _apiUrls.Value.BaseUrl + _apiUrls.Value.GetBasketItem + "/"+userId;
 
         public string PostBasketItem => _apiUrls.Value.BaseUrl + _apiUrls.Value.PostBasketItem;
 

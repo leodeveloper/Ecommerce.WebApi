@@ -12,7 +12,7 @@ namespace Ecommerce.Web.Controllers
     {
 
         private readonly IBasketRepository _iBasketRepository;
-
+        
         public BasketController(IBasketRepository iBasketRepository)
         {
             _iBasketRepository = iBasketRepository;
@@ -20,7 +20,7 @@ namespace Ecommerce.Web.Controllers
 
         public IActionResult Index()
         {
-            IList<BasketItemViewModel>  basketViewModel = _iBasketRepository.GetBasketItem();
+            IList<BasketItemViewModel>  basketViewModel = _iBasketRepository.GetBasketItem(UserContext.getUserId);
             return View(basketViewModel);
         }
 
@@ -48,5 +48,13 @@ namespace Ecommerce.Web.Controllers
             IList<BasketItemViewModel> basketViewModel = _iBasketRepository.DeleteAllBasketItems(userId);
             return RedirectToAction("Index");
         }       
+    }
+
+    /// <summary>
+    /// there is no user login and authentication implemented, once we have the proper login this methos will absolute
+    /// </summary>
+    public class UserContext
+    {
+        public static int getUserId { get { return 1; } }
     }
 }

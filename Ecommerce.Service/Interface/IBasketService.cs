@@ -10,6 +10,6 @@ namespace Ecommerce.Service.Interface
         Task<IList<BasketItem>> ChangeBasketItemQuantityAsync(int id, int quantity);
         Task<IList<BasketItem>> ClearBasketAsync(int userId);
         Task<IList<BasketItem>> DeleteBasketItemByIdAsync(int id);
-        Task<IList<BasketItem>> GetBasketItemsAsync();
+        Task<IList<BasketItem>> GetBasketItemsAsync(int userId);
     }
 }
